@@ -1,0 +1,21 @@
+stages:
+  preprocess:
+    cmd: python preprocessing.py
+    deps:
+      - playground-series-s4e3/train.csv
+      - playground-series-s4e3/test.csv
+      - preprocessing.py
+    outs:
+      - preprocessed_train.csv
+      - preprocessed_test.csv
+
+  train:
+    cmd: python main.py
+    deps:
+      - preprocessed_train.csv
+      - preprocessed_test.csv
+      - modeling.py
+      - main.py
+      - config.py  
+    outs:
+      - model.joblib
