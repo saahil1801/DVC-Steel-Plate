@@ -1,0 +1,54 @@
+schema: '2.0'
+stages:
+  preprocess:
+    cmd: python preprocessing.py
+    deps:
+    - path: playground-series-s4e3/test.csv
+      hash: md5
+      md5: 41e58292daeb4e128d50a5d56ff70610
+      size: 1917038
+    - path: playground-series-s4e3/train.csv
+      hash: md5
+      md5: f7130dffce55459904aeeb959e124f03
+      size: 3133750
+    - path: preprocessing.py
+      hash: md5
+      md5: 9998076f4b2b7939c5dfd23afa5b06a8
+      size: 1873
+    outs:
+    - path: preprocessed_test.csv
+      hash: md5
+      md5: db96b6f5e9f76dbdf2702e717e56b618
+      size: 1715852
+    - path: preprocessed_train.csv
+      hash: md5
+      md5: 39b42aead98965d7f7bc8355f29c239a
+      size: 2831289
+  train:
+    cmd: python main.py
+    deps:
+    - path: config.py
+      hash: md5
+      md5: 15532d20077033176cfd4f35e2bca7d3
+      size: 173
+    - path: main.py
+      hash: md5
+      md5: bed02d52c1f8979e5f930748e38b8904
+      size: 1685
+    - path: modeling.py
+      hash: md5
+      md5: 5dc64102b6f79f61f5cf3ae13847af22
+      size: 2464
+    - path: preprocessed_test.csv
+      hash: md5
+      md5: db96b6f5e9f76dbdf2702e717e56b618
+      size: 1715852
+    - path: preprocessed_train.csv
+      hash: md5
+      md5: 39b42aead98965d7f7bc8355f29c239a
+      size: 2831289
+    outs:
+    - path: model.joblib
+      hash: md5
+      md5: 4e3a6aa5f120857ed08519a3cbf658ee
+      size: 1126285
